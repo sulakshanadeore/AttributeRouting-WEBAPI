@@ -53,6 +53,10 @@ namespace AttributeRouting.Controllers
 
         }
 
+
+
+
+
         [HttpGet("Find/id/name")]
         public IActionResult GetProductByIDorName(int? id,string? name)
         {
@@ -69,15 +73,24 @@ namespace AttributeRouting.Controllers
                 int? prodid = id;
                   return RedirectToAction("GetProd", new {id=prodid });
                 
-
-
-
             }
             else
             {
 
                 return NotFound();
             }
+
+
+        }
+
+
+        [HttpPut("{id:int}/newname")]
+        public IActionResult UpdateProduct(int id,string newname)
+        {
+
+            string[] prods = new string[] { "Laptop", "Mobile", "Charger", "Cable" };
+            prods[id] = newname;
+            return Ok($"Product id {id} updated to {newname}");
 
 
         }
